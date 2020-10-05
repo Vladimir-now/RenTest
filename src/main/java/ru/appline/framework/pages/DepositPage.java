@@ -39,7 +39,7 @@ public class DepositPage extends BasePage {
     WebElement toWithdraw;
 
 
-    @Step("Выбираем валюту '{nameService}'")
+    @Step("Выбираем валюту '{nameCurrency}'")
     public DepositPage selectCurrency(Parameters.Currency nameCurrency) {
         Assertions.assertEquals(conversionPage.getText(), StartPage.getConversionPage(), "Страница \"" + StartPage.getConversionPage() + "\" не прогрузилась.");
         WebElement title;
@@ -56,6 +56,7 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Заполняем форму")
     public DepositPage fillForm(String amount, Parameters.TimeDeposit time, String replenishment, Parameters.Tick capitalization) {
         fillInputField(depositAmount, amount);
         selector(timeDeposit, time.getTitleTimeDeposit());
@@ -66,6 +67,7 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Проверка результатов после заполнения")
     public DepositPage expectedResults(String accrued, String replenishment, String toWithdraw) {
         if (!accrued.equals(this.accrued.getText()) || !replenishment.equals(this.replenishment.getText()) || !toWithdraw.equals(this.toWithdraw.getText())) sleeper(500);
         Assertions.assertAll(
