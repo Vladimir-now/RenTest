@@ -47,7 +47,7 @@ public class DepositPage extends BasePage {
         for (WebElement e: currency) {
             title = e.findElement(By.xpath(".//span[contains(@class, \"text\")]"));
             if (title.getText().equals(nameCurrency.getTitleCurrency())){
-                linkCurrency = e.findElement(By.xpath("./../.."));
+                linkCurrency = title.findElement(By.xpath("./../.."));
                 clickElement(linkCurrency);
                 return this;
             }
